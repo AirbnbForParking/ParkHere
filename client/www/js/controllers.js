@@ -33,3 +33,29 @@ angular.module('starter.controllers', ['starter.services'])
     }, 1000);
   };
 })
+
+//retrieves results of search
+.controller('SearchesCtrl', function($scope, Search){
+  // dummy data
+  $scope.searches = [
+    {id: 1, address: '123 first street', seller: 'Joe', price: 10},
+    {id: 2, address: '345 second street', seller: 'John', price: 15},
+    {id: 3, address: '567 third street', seller: 'Katherine', price: 20},
+    {id: 4, address: '789 fourth street', seller: 'Christina', price: 25}
+  ];
+
+  //API call when ready
+  // $scope.searches = Search.query();
+})
+
+// Retrieves a specific search using the Search service and store it in scope
+.controller('SearchCtrl', function($scope, $stateParams, Search){
+  $scope.search = Search.get({id: $stateParams.searchId});
+})
+
+
+
+
+
+
+
