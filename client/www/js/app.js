@@ -62,6 +62,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.searchresults', {
+    url: '/searchresults',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/searchresults.html',
+        controller: 'SearchResultsCtrl'
+      }
+    }
+  })
+
   .state('app.search', {
     url: '/search/:searchId',
     views: {
