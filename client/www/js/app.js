@@ -18,6 +18,20 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 })
 
+.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
+ 
+                event.preventDefault();
+            }
+        });
+    };
+})
+
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
 
@@ -43,7 +57,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html',
-        controller: 'SearchesCtrl'
+        controller: 'SearchResultsCtrl'
       }
     }
   })
@@ -53,7 +67,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/search.html',
-        controller: 'SearchCtrl'
+        controller: 'SearchResultCtrl'
       }
     }
   });

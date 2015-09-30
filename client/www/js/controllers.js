@@ -35,7 +35,7 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 //retrieves results of search
-.controller('SearchesCtrl', function($scope, Search){
+.controller('SearchResultsCtrl', function($scope, Search){
   // dummy data
   $scope.searches = [
     {id: 1, address: '123 first street', seller: 'Joe', price: 10},
@@ -44,12 +44,16 @@ angular.module('starter.controllers', ['starter.services'])
     {id: 4, address: '789 fourth street', seller: 'Christina', price: 25}
   ];
 
+  $scope.test = function(){
+    console.log('testinthecontroller');
+  }
+
   //API call when ready
   // $scope.searches = Search.query();
 })
 
 // Retrieves a specific search using the Search service and store it in scope
-.controller('SearchCtrl', function($scope, $stateParams, Search){
+.controller('SearchResultCtrl', function($scope, $stateParams, Search){
   $scope.search = Search.get({id: $stateParams.searchId});
 })
 
