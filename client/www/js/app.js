@@ -15,6 +15,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    console.log("Type of: "+ typeof google);
+    if (typeof google === 'undefined' || typeof google === undefined) {
+      console.log("Google maps unavailable");
+    }
+    console.log('APP STATE DEVICEREADY');
   });
 })
 
