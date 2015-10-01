@@ -57,6 +57,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   var map;
 
+  //Called when input is submitted
   $scope.getSearches = function(input){
     // get coordinates for input
     var mapOptions;
@@ -81,6 +82,7 @@ angular.module('starter.controllers', ['starter.services'])
     var marker = new google.maps.Marker({
       map: map,
       position: location,
+      //map type
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     return marker;
