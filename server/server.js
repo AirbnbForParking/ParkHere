@@ -11,7 +11,7 @@ console.log('Server listening on port ', app.get('port'))
 //      db = require('./server/db'),
 //      pg = require('pg');
 // // get dependencies
-// var app = require("express")();
+// var app = require("expre ss")();
  
 // // handle request and response
 // // app.get("/", function(req, res) {
@@ -38,11 +38,11 @@ console.log('Server listening on port ', app.get('port'))
 //     .query('SELECT table_schema,table_name FROM information_schema.tables;')
 //     .on('row', function(row) {
 //       console.log(JSON.stringify(row));
-//     });
+//     };);
 // });
 
 // db.sequelize.sync().then(function() {
 //   http.createServer(app).listen(app.get('port'), function(){
 //     console.log('Express server listening on port ' + app.get('port'));
-//   });
+//   };);
 // });

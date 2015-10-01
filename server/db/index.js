@@ -9,80 +9,82 @@ var Sequelize = require('sequelize');
 //     native: true
 //   });
 
-var sequelize = new Sequelize('airbnbforparking', 'boshika', 'knowthyself', {
+var sequelize = new Sequelize('airbnbparking', 'user', 'password', {
   host: 'localhost',
   dialect: 'postgres',
   port: 5432,
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  }  
-});
-console.log(sequelize);
+  //schema: 'public'
+ });
+
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  }, function (err) { 
+    console.log('Unable to connect to the database:', err);
+  });
+
+
 module.exports = function() {
 var User = sequelize.define('users', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+    },
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
   email: Sequelize.STRING,
   address: Sequelize.STRING,
   phone: Sequelize.INTEGER,
   username: Sequelize.STRING,
-  password: Sequelize.STRING,
-  created_at: {
-    type: Sequelize.DATE
-  },
-  updated_at: {
-    type: Sequelize.DATE
-  }
+  password: Sequelize.STRING  
 });
 
 
 var Transaction = sequelize.define('transactions', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   transactionDate: Sequelize.DATE,
-  occupiedStatus: Sequelize.BOOLEAN,
-  userid: {
-    type: Sequelize.STRING,
+  occupiedStatus: {
+    type: Sequelize.INTEGER,
+  },
+  userId: {
+    type: Sequelize.INTEGER,
     references: {
       model: User,
       key: 'id'
     }  
   },
-  listingid: {
-    type: Sequelize.INTEGER,
-    references: {
-      model: Listing,
-      key: 'id'
-    }
-  },
-   created_at: {
-    type: Sequelize.DATE
-  },
-  updated_at: {
-    type: Sequelize.DATE
-  },
   paidStatus: Sequelize.BOOLEAN,
-  length: Sequelize.STRING,
+  length: Sequelize.STRING
  });
 
 
 var Renter = sequelize.define('renters', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
   email: Sequelize.STRING,
   address: Sequelize.STRING,
   phone: Sequelize.INTEGER,
   username: Sequelize.STRING,
-  password: Sequelize.STRING,
-  created_at: {
-    type: Sequelize.DATE
-  },
-  updated_at: {
-    type: Sequelize.DATE
-  }
+  password: Sequelize.STRING
 });
 
 var Listing = sequelize.define('listings', {
+  id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+  },
   listingAddress: Sequelize.STRING,
   description: Sequelize.STRING,
   status: Sequelize.BOOLEAN,
@@ -94,42 +96,21 @@ var Listing = sequelize.define('listings', {
       key: 'id'
     }  
   },
-  statusid:  {
-    type: Sequelize.BOOLEAN,
-    references: {
-      model: Transaction,
-      key: 'occupiedStatus'
-    }  
-  },
-   created_at: {
-    type: Sequelize.DATE
-  },
-  updated_at: {
-    type: Sequelize.DATE
-  }
 });
 
 var Message = sequelize.define('messages', {
   message: Sequelize.STRING,
-  userid: {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  userId: {
     type: Sequelize.INTEGER,
     references: {
       model: User,
       key: 'id'
     }
-  },
-  renterid: {
-    type: Sequelize.INTEGER,
-    references: {
-      model:Renter,
-      key: 'id'
-    }
-  },
-   created_at: {
-    type: Sequelize.DATE
-  },
-  updated_at: {
-    type: Sequelize.DATE
   }
 });
 
@@ -137,15 +118,20 @@ User.hasOne(Transaction);
 Transaction.belongsTo(User);
 
 Listing.hasOne(Transaction);
-Transaction.belongsTo(Listing);
-
-Renter.hasMany(Listing);
-Listing.belongsTo(Renter);
-User.hasMany(Message);
+Transaction.belongsTo(Listing, { foreignKey: 'id' });
+// Renter.hasMany(Listing);
+// Listing.belongsTo(Renter);
+// User.hasMany(Message);
 Renter.hasMany(Message);
-Message.belongsTo(User);
-Message.belongsTo(Renter);
+// Message.belongsTo(User);
+Message.belongsTo(Renter, { foreignKey: 'id'});
 
-db.sync();
-  return {User:User, Renter:Renter, Transaction:Transaction, Listing:Listing, Message:Message};
+sequelize
+  .sync({ force: true })
+  .then(function(err) {
+    console.log('It worked!');
+  }, function (err) { 
+    console.log('An error occurred while creating the table:', err);
+  });
+  return {User:User, Transaction:Transaction, Listing:Listing, Renter:Renter};//, Renter:Renter, Transaction:Transaction, Listing:Listing, Message:Message};
 };
