@@ -88,11 +88,14 @@ angular.module('starter.controllers', ['starter.services'])
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-  },
+  }
 
-  // $scope.convertArrayToAddressArray = function(arr) {
-  //   return 
-  // }
+  $scope.addressArray = function(queryArray) {
+    return _.map(queryArray, function(element){
+      if (element.address !== undefined)
+        return element.address;
+    });
+  }
 
   //API call when ready
   // $scope.searches = Search.query();
