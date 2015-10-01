@@ -38,56 +38,75 @@ angular.module('starter.controllers', ['starter.services'])
 .controller('SearchResultsCtrl', function($scope, $location, Search){
   // dummy data
   $scope.searches = [
-    {id: 1, address: '1600 Amphitheatre Pkwy, Mountain View, CA', seller: 'Joe', price: 10, lat: 37.422245, lng: -122.0840084}, //"lat" : 37.422245, "lng" : -122.0840084
-    {id: 2, address: '1 World Way, Los Angeles, CA', seller: 'John', price: 15},
-    {id: 3, address: '652 Polk St San Francisco, CA', seller: 'Katherine', price: 20},
-    {id: 4, address: 'Dick\'s Sporting Goods Concord, NH 03301 United States', seller: 'Christina', price: 25},
-    {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30}
+    {id: 1, address: '1600 Amphitheatre Pkwy, Mountain View, CA', seller: 'Joe', price: 10, lat: 37.422245, lng: -122.0840084},
+    {id: 2, address: '1 World Way, Los Angeles, CA', seller: 'John', price: 15, lat: 33.94224, lng: -118.40279},
+    {id: 3, address: '652 Polk St San Francisco, CA', seller: 'Katherine', price: 20, lat: 37.78291, lng: -122.41902},
+    {id: 4, address: 'Dick\'s Sporting Goods Concord, NH 03301 United States', seller: 'Christina', price: 25, lat: 43.22697, lng: -71.48562},
+    {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30, lat: 47.62657, lng: -122.14020}
   ];
 
+  // User lists address for rent
+    // Geocode this at this time
+
+  // Searches contains address and possibly lat and longitude, if contains lat and long then plot it,
+  // but if doesn't then geocoding lookup of address, save the lat and long to the server by doing UPDATE request
+  // for the specific id. 
+
+  // If search address is not current location
+    // Geocode the address searched for (not a listing address) and add marker at that address. 
 
   var map;
-  $scope.getSearches = function(){
 
-    var myLatlng = new google.maps.LatLng(37.422245,-122.0840084);
-    var mapOptions = {
-      zoom: 19,
-      // map gets centered here
-      // set center = wantedcoordinates for very last object in container
-      center: myLatlng
-    };
-    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  $scope.getSearches = function(input){
+    // get coordinates for input
+    var mapOptions;
+    var myLatlng = $scope.AddressToLocation(input, function(location){
 
-    // var marker = new google.maps.Marker({
-    //     position: myLatlng,
-    //     title:"Hello World!"
-    // });
-
-    var marker = $scope.addMarker($scope.searches[0]['address'], map);
-
-    // To add the marker to the map, call setMap();
-    // marker.setMap(map);
-    // markers.forEach(function(marker) {
-    //   marker.setMap(map);
-    // });
-
-    // $location.path('app/searchresults');
+      console.log(location); // {H: 37.422245, L: -122.0840084}
+      var mapOptions = {
+        zoom: 19,
+        // map gets centered here
+        center: location
+      };
+      map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      $scope.addMarkerGeo(location, map);
+      $scope.markers = $scope.searches.forEach(function(obj) {
+        $scope.addMarker(obj,map);
+      });
+    });
   },
 
-  // Add marker to map
-  $scope.addMarker = function(addressString, map) {
+  // Add marker to map for the input to search bar
+  $scope.addMarkerGeo = function(location, map) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: location,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    return marker;
+  },
+
+  // Get latitude and longitude coords from Address
+  $scope.AddressToLocation = function(addressString, callback) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': addressString}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-        return marker;
+        console.log('inside');
+        callback(results[0].geometry.location);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
+  }
+
+  // Add marker while iterating through array of database results
+  $scope.addMarker = function(obj, map) {
+    var marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(obj.lat,obj.lng),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+    return marker;
   }
 
   $scope.addressArray = function(queryArray) {
