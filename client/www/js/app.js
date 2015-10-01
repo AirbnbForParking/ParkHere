@@ -15,14 +15,13 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
-    console.log("Type of: "+ typeof google);
     if (typeof google === 'undefined' || typeof google === undefined) {
       console.log("Google maps unavailable");
     }
-    console.log('APP STATE DEVICEREADY');
   });
 })
 
+// Custom directive ng-enter, this listens for the enter key
 .directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -37,6 +36,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     };
 })
 
+// Client Side Routing
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
 
