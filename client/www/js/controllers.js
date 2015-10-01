@@ -82,6 +82,7 @@ angular.module('starter.controllers', ['starter.services'])
     var marker = new google.maps.Marker({
       map: map,
       position: location,
+      icon: './../img/green-dot.png',
       //map type
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
