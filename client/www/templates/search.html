@@ -4,7 +4,7 @@
     <h1>Search</h1>
       <label class="item item-input" ng-controller="SearchResultsCtrl">
         <i class="icon ion-search placeholder-icon"></i>
-        <input type="search" placeholder="Search" ng-enter="getSearches(); searchQuery ='';" ng-model="searchQuery">
+        <input type="search" placeholder="Search" ng-enter="getSearches(searchQuery); searchQuery ='';" ng-model="searchQuery">
       </label>
     </div>
       <ion-content ng-controller="MapController">
