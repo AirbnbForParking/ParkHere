@@ -9,6 +9,17 @@ var Sequelize = require('sequelize');
 //     native: true
 //   });
 
+var sequelize = new Sequelize('airbnbforparking', 'boshika', 'knowthyself', {
+  host: 'localhost',
+  dialect: 'postgres',
+  port: 5432,
+  pool: {
+    max: 5,
+    min: 0,
+    idle: 10000
+  }  
+});
+console.log(sequelize);
 module.exports = function() {
 var User = sequelize.define('users', {
   firstName: Sequelize.STRING,

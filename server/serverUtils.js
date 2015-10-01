@@ -1,5 +1,7 @@
 var models = require('./db/index.js');
+console.log(models);
 var models = models();
+console.log(models);
 var User = models.User;
 var Transaction = models.Transaction;
 var Renter = models.Renter;
