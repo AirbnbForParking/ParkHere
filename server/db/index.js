@@ -2,19 +2,19 @@ var app = require('./../server-config.js');
 var db = require('./database');
 var Sequelize = require('sequelize');
 
-// sequelize = new Sequelize('d480hpcc0j9jp0', 'vbanomqzrljvvv', 'Gs8_u4RIDhHNTmhk4zOBdsNrAc', {
-//     host:     'ec2-54-227-254-13.compute-1.amazonaws.com',
-//     port:     5432,
-//     dialect: "postgres",
-//     native: true
-//   });
+var sequelize = new Sequelize('d480hpcc0j9jp0', 'vbanomqzrljvvv', 'Gs8_u4RIDhHNTmhk4zOBdsNrAc', {
+    host:     'ec2-54-227-254-13.compute-1.amazonaws.com',
+    port:     5432,
+    dialect: "postgres",
+    native: true
+  });
 
-var sequelize = new Sequelize('airbnbparking', 'user', 'password', {
-  host: 'localhost',
-  dialect: 'postgres',
-  port: 5432,
-  //schema: 'public'
- });
+// var sequelize = new Sequelize('airbnbparking', 'user', 'password', {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   port: 5432,
+//   //schema: 'public'
+//  });
 
 sequelize
   .authenticate()
