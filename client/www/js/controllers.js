@@ -48,7 +48,7 @@ angular.module('starter.controllers', ['starter.services'])
   // limit search to the current size of the window
 
   // view switch
-  var geocoder;
+
   var map;
   $scope.getSearches = function(){
     // get user's current location || if search bar populated
@@ -56,6 +56,7 @@ angular.module('starter.controllers', ['starter.services'])
 
     // for each address in searches
       // do this
+    // var markers = ;
     var myLatlng = new google.maps.LatLng(37.422245,-122.0840084);
     var mapOptions = {
       zoom: 19,
@@ -65,14 +66,18 @@ angular.module('starter.controllers', ['starter.services'])
     };
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        title:"Hello World!"
-    });
+    // var marker = new google.maps.Marker({
+    //     position: myLatlng,
+    //     title:"Hello World!"
+    // });
 
+    var marker = $scope.addMarker($scope.searches[0]['address'], map);
 
     // To add the marker to the map, call setMap();
-    marker.setMap(map);
+    // marker.setMap(map);
+    // markers.forEach(function(marker) {
+    //   marker.setMap(map);
+    // });
 
 
 
@@ -85,17 +90,24 @@ angular.module('starter.controllers', ['starter.services'])
     // $location.path('app/searchresults');
   },
 
-    $scope.getMarkers = function(addressString) {
+  $scope.addMarker = function(addressString, map) {
+    var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': addressString}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        return new google.maps.Marker({
+      if (status === google.maps.GeocoderStatus.OK) {
+        var marker = new google.maps.Marker({
+            map: map,
             position: results[0].geometry.location
         });
+        return marker;
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
   },
+
+  $scope.convertArrayToAddressArray = function(arr) {
+
+  }
 
   // for each obj in search
     // getMarkers(obj.address)
