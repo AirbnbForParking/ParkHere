@@ -1,23 +1,15 @@
-var pg = require('pg');
+var app = require('./../server-config.js');
+var db = require('./database');
 var Sequelize = require('sequelize');
 
-sequelize = new Sequelize(process.env.HEROKU_POSTGRESQL_BRONZE_URL, {
-    
-    dialect: "postgres",
-    protocol: 'postgres',
-    port:     match[4],
-    host:     match[3],
-    logging: true
-  });
+// sequelize = new Sequelize('d480hpcc0j9jp0', 'vbanomqzrljvvv', 'Gs8_u4RIDhHNTmhk4zOBdsNrAc', {
+//     host:     'ec2-54-227-254-13.compute-1.amazonaws.com',
+//     port:     5432,
+//     dialect: "postgres",
+//     native: true
+//   });
 
-sequelize
-  .authenticate()
-  .then(function(err) {
-    console.log('Connection has been established successfully.');
-  }, function (err) { 
-    console.log('Unable to connect to the database:', err);
-  });
-
+module.exports = function() {
 var User = sequelize.define('users', {
   firstName: Sequelize.STRING,
   lastName: Sequelize.STRING,
@@ -26,7 +18,14 @@ var User = sequelize.define('users', {
   phone: Sequelize.INTEGER,
   username: Sequelize.STRING,
   password: Sequelize.STRING,
+  created_at: {
+    type: Sequelize.DATE
+  },
+  updated_at: {
+    type: Sequelize.DATE
+  }
 });
+
 
 var Transaction = sequelize.define('transactions', {
   transactionDate: Sequelize.DATE,
@@ -45,9 +44,16 @@ var Transaction = sequelize.define('transactions', {
       key: 'id'
     }
   },
-  paidStatus: Sequlize.BOOLEAN,
+   created_at: {
+    type: Sequelize.DATE
+  },
+  updated_at: {
+    type: Sequelize.DATE
+  },
+  paidStatus: Sequelize.BOOLEAN,
   length: Sequelize.STRING,
  });
+
 
 var Renter = sequelize.define('renters', {
   firstName: Sequelize.STRING,
@@ -57,6 +63,12 @@ var Renter = sequelize.define('renters', {
   phone: Sequelize.INTEGER,
   username: Sequelize.STRING,
   password: Sequelize.STRING,
+  created_at: {
+    type: Sequelize.DATE
+  },
+  updated_at: {
+    type: Sequelize.DATE
+  }
 });
 
 var Listing = sequelize.define('listings', {
@@ -78,6 +90,12 @@ var Listing = sequelize.define('listings', {
       key: 'occupiedStatus'
     }  
   },
+   created_at: {
+    type: Sequelize.DATE
+  },
+  updated_at: {
+    type: Sequelize.DATE
+  }
 });
 
 var Message = sequelize.define('messages', {
@@ -95,6 +113,28 @@ var Message = sequelize.define('messages', {
       model:Renter,
       key: 'id'
     }
+  },
+   created_at: {
+    type: Sequelize.DATE
+  },
+  updated_at: {
+    type: Sequelize.DATE
   }
 });
 
+User.hasOne(Transaction);
+Transaction.belongsTo(User);
+
+Listing.hasOne(Transaction);
+Transaction.belongsTo(Listing);
+
+Renter.hasMany(Listing);
+Listing.belongsTo(Renter);
+User.hasMany(Message);
+Renter.hasMany(Message);
+Message.belongsTo(User);
+Message.belongsTo(Renter);
+
+db.sync();
+  return {User:User, Renter:Renter, Transaction:Transaction, Listing:Listing, Message:Message};
+};
