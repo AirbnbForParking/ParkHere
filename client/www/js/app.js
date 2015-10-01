@@ -57,6 +57,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.listing', {
+    url: '/listing',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/listing.html'
+      }
+    }
+  })
+
   .state('app.searches', {
     url: '/search',
     views: {
@@ -88,6 +97,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
 
   //Fallback Route
-  $urlRouterProvider.otherwise('/app/history');
+  $urlRouterProvider.otherwise('/app/search');
 
 });

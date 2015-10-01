@@ -83,7 +83,7 @@ angular.module('starter.controllers', ['starter.services'])
       map: map,
       position: location,
       icon: './../img/green-dot.png',
-      //map type
+        //map type
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     return marker;
@@ -163,6 +163,14 @@ angular.module('starter.controllers', ['starter.services'])
     };
     google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise());
 
+
+})
+
+.controller('ListingCtrl', function($scope){
+
+  $scope.submitListing = function(listing){
+    console.log(listing);
+  }
 
 });
 
