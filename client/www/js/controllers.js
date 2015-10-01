@@ -45,18 +45,10 @@ angular.module('starter.controllers', ['starter.services'])
     {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30}
   ];
 
-  // limit search to the current size of the window
-
-  // view switch
 
   var map;
   $scope.getSearches = function(){
-    // get user's current location || if search bar populated
-      // var wantedCoordinates = { lat = ^^, set long ^^ };
 
-    // for each address in searches
-      // do this
-    // var markers = ;
     var myLatlng = new google.maps.LatLng(37.422245,-122.0840084);
     var mapOptions = {
       zoom: 19,
@@ -79,17 +71,10 @@ angular.module('starter.controllers', ['starter.services'])
     //   marker.setMap(map);
     // });
 
-
-
-    // after addresses in searches populated
-    // add one more marker for current location
-      // zoom 19
-      // center to this
-
-
     // $location.path('app/searchresults');
   },
 
+  // Add marker to map
   $scope.addMarker = function(addressString, map) {
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': addressString}, function(results, status) {
@@ -103,39 +88,14 @@ angular.module('starter.controllers', ['starter.services'])
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-  },
-
-  $scope.convertArrayToAddressArray = function(arr) {
-
   }
 
-  // for each obj in search
-    // getMarkers(obj.address)
-
-///////////////////////////////////
-  // user searches
-    // take inputted string
-      // convert inputted string into lat & long
-      // center = lat & long
-    // figure out northwest corner, southeast corner of the google maps box
-    // query database searching for all entries within this box
-
-///////////////////////////////////
-  
-  // user searches
-    // take inputted string
-      // convert inputed string into lat & long
-      // center = lat & long
-      // set zoom = 19
-    // query database 100.1 <long < 100.2, 100.1 < lat < 100.2
-    // Add all markers from ^^
-
-    // distance function that runs through database and grabs shortest distance between current location/ each obj
-
-
-
-
-
+  $scope.addressArray = function(queryArray) {
+    return _.map(queryArray, function(element){
+      if (element.address !== undefined)
+        return element.address;
+    });
+  }
 
   //API call when ready
   // $scope.searches = Search.query();
