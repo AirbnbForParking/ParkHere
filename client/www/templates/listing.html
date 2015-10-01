@@ -1,0 +1,43 @@
+<ion-modal-view>
+  <ion-content>
+    <h1 class="title">Add Listing</h1>
+    <form ng-submit="addListing()" ng-controller="ListingCtrl">
+      <div class="listing">
+
+       <label class="item item-input item-floating-label">
+          <span class="input-label">Address</span>
+          <input type="text" placeholder="Address" ng-model="data.address">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Start Date</span>
+          <input type="date">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">End Date</span>
+          <input type="date">
+        </label>
+
+        <h4>Start Time</h4>
+        <ionic-timepicker input-obj="timePickerObject">
+          <button class="button button-block button-positive overflowShow">
+            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.startTime"></standard-time-meridian>
+          </button>
+        </ionic-timepicker>
+
+        <h4>End Time</h4>
+        <ionic-timepicker input-obj="timePickerObject">
+          <button class="button button-block button-positive overflowShow">
+            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.endTime"></standard-time-meridian>
+          </button>
+        </ionic-timepicker>
+
+      <button class="button button-block button-positive" type="submit">
+        Add Listing
+      </button>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>

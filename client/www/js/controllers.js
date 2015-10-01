@@ -42,7 +42,20 @@ angular.module('starter.controllers', ['starter.services'])
     {id: 2, address: '1 World Way, Los Angeles, CA', seller: 'John', price: 15, lat: 33.94224, lng: -118.40279},
     {id: 3, address: '652 Polk St San Francisco, CA', seller: 'Katherine', price: 20, lat: 37.78291, lng: -122.41902},
     {id: 4, address: 'Dick\'s Sporting Goods Concord, NH 03301 United States', seller: 'Christina', price: 25, lat: 43.22697, lng: -71.48562},
-    {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30, lat: 47.62657, lng: -122.14020}
+    {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30, lat: 47.62657, lng: -122.14020},
+
+    // dummy cluster
+    {id: 6, address: '582 Sutter St San Francisco, CA 94102', seller: 'Bob', price: 30, lat: 37.78918, lng: -122.40993},
+    {id: 7, address: '678 Post St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78776, lng: -122.41295},
+    {id: 8, address: '850 Bush St San Francisco, CA 94108', seller: 'Bob', price: 30, lat: 37.79003, lng: -122.41134},
+    {id: 9, address: '144 Taylor St San Francisco, CA 94102', seller: 'Bob', price: 30, lat: 37.78391, lng: -122.41067},
+    {id: 10, address: '912 Sutter St San Francisco, CA 94104', seller: 'Bob', price: 30, lat: 37.78854, lng: -122.41548},
+    {id: 11, address: '754 Post St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78778, lng: -122.41436},
+    {id: 12, address: '670 Larkin St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78407, lng: -122.41759},
+    {id: 13, address: '798 Sutter St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78878, lng: -122.41347},
+    {id: 14, address: '871 Sutter St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78823, lng: -122.41459},
+    {id: 15, address: '619 Taylor St San Francisco, CA 94102', seller: 'Bob', price: 30, lat: 37.78820, lng: -122.41204}
+
   ];
 
   // User lists address for rent
@@ -83,7 +96,7 @@ angular.module('starter.controllers', ['starter.services'])
       map: map,
       position: location,
       icon: './../img/green-dot.png',
-      //map type
+        //map type
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     return marker;
@@ -163,6 +176,76 @@ angular.module('starter.controllers', ['starter.services'])
     };
     google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise());
 
+
+})
+
+.controller('ListingCtrl', function($scope){
+
+  $scope.data = {
+    address: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: ''
+  };
+
+  $scope.timePickerObject = {
+    inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
+    step: 1,  //Optional
+    format: 24,  //Optional
+    setLabel: 'Set',  //Optional
+    closeLabel: 'Close',  //Optional
+    setButtonType: 'button-positive',  //Optional
+    closeButtonType: 'button-stable',  //Optional
+    callback: function (val) {    //Mandatory
+      timePickerCallback(val);
+    } 
+  };
+
+  $scope.datepickerObject = {
+    titleLabel: 'Title',  //Optional
+    todayLabel: 'Today',  //Optional
+    closeLabel: 'Close',  //Optional
+    setLabel: 'Set',  //Optional
+    setButtonType : 'button-assertive',  //Optional
+    todayButtonType : 'button-assertive',  //Optional
+    closeButtonType : 'button-assertive',  //Optional
+    inputDate: new Date(),    //Optional
+    mondayFirst: true,    //Optional
+    weekDaysList: weekDaysList,   //Optional
+    templateType: 'modal', //Optional
+    showTodayButton: 'true', //Optional
+    modalHeaderColor: 'bar-positive', //Optional
+    modalFooterColor: 'bar-positive', //Optional
+    from: new Date(),   //Optional
+    callback: function (val) {    //Mandatory
+      datePickerCallback(val);
+    }
+  };
+
+  function timePickerCallback(val) {
+    if (typeof (val) === 'undefined') {
+      console.log('Time not selected');
+    } else {
+      var selectedTime = new Date(val * 1000);
+      console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+    }
+  }
+
+  var weekDaysList = ["Sun", "Mon", "Tue", "Wed", "thu", "Fri", "Sat"];
+
+  var datePickerCallback = function (val) {
+    if (typeof(val) === 'undefined') {
+      console.log('No date selected');
+    } else {
+      console.log('Selected date is : ', val)
+    }
+  };
+
+  $scope.addListing = function(){
+    console.log("Browser Console - Logging in with ", $scope.data);
+    $scope.data = {};
+  };
 
 });
 
