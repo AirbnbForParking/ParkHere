@@ -49,7 +49,7 @@ angular.module('starter.controllers', ['starter.services'])
     {id: 8, address: '850 Bush St San Francisco, CA 94108', seller: 'Bob', price: 30, lat: 37.79003, lng: -122.41134},
     {id: 9, address: '144 Taylor St San Francisco, CA 94102', seller: 'Bob', price: 30, lat: 37.78391, lng: -122.41067},
     {id: 10, address: '912 Sutter St San Francisco, CA 94104', seller: 'Bob', price: 30, lat: 37.78854, lng: -122.41548},
-    {id: 11, address: '754 Post St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78778, lng: -122.41436},
+    {id: 11, address: '754 Post St San Fran cisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78778, lng: -122.41436},
     {id: 12, address: '670 Larkin St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78407, lng: -122.41759},
     {id: 13, address: '798 Sutter St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78878, lng: -122.41347},
     {id: 14, address: '871 Sutter St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78823, lng: -122.41459},
