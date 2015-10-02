@@ -261,13 +261,15 @@ angular.module('starter.controllers', ['starter.services'])
       startHours: new Date(data.startTime).getUTCHours(),
       startMinutes: new Date(data.startTime).getUTCMinutes(),
       endHours: new Date(data.endTime).getUTCHours(),
-      endMinutes: new Date(data.endTime).getUTCMinutes()
+      endMinutes: new Date(data.endTime).getUTCMinutes(),
+      price: data.price
     });
     data.address = null;
     data.startDate = null;
     data.endDate = null;
     data.startTime = null;
     data.endTime = null;
+    data.price = 0;
     $scope.closeModal();
   };
 
