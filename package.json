@@ -12,7 +12,7 @@
     "sequelize": "^3.8.0"
   },
   "scripts": {
-    "start": "server.js"
+    "start": "./server/server.js"
   },
   "engines": {
     "node": "0.10.x"
