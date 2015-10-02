@@ -116,11 +116,11 @@ angular.module('starter.controllers', ['starter.services'])
         $scope.clearMarkers();
       // this happens on the server
         // filter markers
-        var filtered = searches.filter(function(parkingSpot){
-          if (parkingSpot)
+        var filtered = $scope.searches.filter(function(parkingSpot){
+          if (parkingSpot){}
             // figure lower lat and higher lat bound
             // figure lower long and higher long bound
-        })
+        });
 
 
       // read current markers
