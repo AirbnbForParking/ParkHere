@@ -1,0 +1,42 @@
+<ion-modal-view>
+  <ion-header-bar class="bar bar-header bar-positive">
+    <h1 class="title">New Listing</h1>
+    <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list">
+
+       <label class="item item-input item-floating-label">
+          <span class="input-label">Address</span>
+          <input type="text" placeholder="Address" ng-model="data.address">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Start Date</span>
+          <input type="date" ng-model="data.startDate">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">End Date</span>
+          <input type="date" ng-model="data.endDate">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Start time</span>
+          <input type="time" ng-model="data.startTime">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">End time</span>
+          <input type="time" ng-model="data.endTime">
+        </label>
+
+        <label class="item item-input">
+          <span class="input-label">Price</span>
+          <input type="number" ng-model="data.price">
+        </label>
+
+      <button class="button button-full button-positive" ng-click="addListing(data)">Create</button>
+    </div>
+  </ion-content>
+</ion-modal-view>
