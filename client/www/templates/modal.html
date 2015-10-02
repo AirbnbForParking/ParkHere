@@ -21,20 +21,16 @@
           <input type="date" ng-model="data.endDate">
         </label>
 
-        <h4>Start Time</h4>
-        <ionic-timepicker input-obj="timePickerObject">
-          <button class="button button-block button-positive overflowShow">
-            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.startTime"></standard-time-meridian>
-          </button>
-        </ionic-timepicker>
+        <label class="item item-input">
+          <span class="input-label">Start time</span>
+          <input type="time" ng-model="data.startTime">
+        </label>
 
-        <h4>End Time</h4>
-        <ionic-timepicker input-obj="timePickerObject">
-          <button class="button button-block button-positive overflowShow">
-            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.endTime"></standard-time-meridian>
-          </button>
-        </ionic-timepicker>
-        
+        <label class="item item-input">
+          <span class="input-label">End time</span>
+          <input type="time" ng-model="data.endTime">
+        </label>
+
       <button class="button button-full button-positive" ng-click="addListing(data)">Create</button>
     </div>
   </ion-content>
