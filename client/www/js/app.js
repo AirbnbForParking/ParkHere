@@ -61,7 +61,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-timepicker'])
     url: '/listing',
     views: {
       'menuContent': {
-        templateUrl: 'templates/listing.html'
+        templateUrl: 'templates/listing.html',
+        controller: 'ListingCtrl'
       }
     }
   })

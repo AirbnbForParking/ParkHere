@@ -20,5 +20,5 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Listing', function($resource){
-  return $resource('http://localhost:5000/login/:loginId');
+  return $resource('http://localhost:5000/listing/:listingId');
 })
