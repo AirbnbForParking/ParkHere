@@ -1,0 +1,53 @@
+<!-- <ion-view view-title="Listing">
+  <ion-content>
+    <h1 class="title">Add Listing</h1>
+    <form ng-submit="addListing()" ng-controller="ListingCtrl">
+      <div class="listing">
+
+
+
+      <button class="button button-block button-positive" type="submit">
+        Add Listing
+      </button>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-view> -->
+
+
+<ion-view view-title="Current Listings">
+  <ion-header-bar class="bar-positive">
+  </ion-header-bar>
+  <ion-content>
+    <h1 class="title">Listings</h1>
+    <div class="buttons">
+      <button class="button button-icon ion-compose" ng-click="modal.show()">Add a New Listings</button>
+    </div>
+
+        <div class="row header">
+          <div class="col">Address</div>
+          <div class="col">Start Date</div>
+          <div class="col">End Date</div>
+          <div class="col">Start Time</div>
+          <div class="col">End Time</div>
+          <div class="col">Price/hour</div>
+        </div>
+        <div class="row" ng-repeat="listing in listings">
+          <div class="col">{{listing.address}}</div>
+          <div class="col">{{listing.startDate | date:'yyyy-MM-dd'}}</div>
+          <div class="col">{{listing.endDate | date:'yyyy-MM-dd'}}</div>
+          <div class="col">{{listing.startTime | date:'h:mma'}}</div>
+          <div class="col">{{listing.endTime | date:'h:mma'}}</div>
+          <div class="col">${{listing.price}}</div>
+        </div>
+
+<!--     <ion-list>
+      <ion-item ng-repeat="listing in listings">
+        {{listing}}
+      </ion-item>
+    </ion-list> -->
+  </ion-content>
+</ion-view>
+    
+<!-- <script id="templates/modal.html" type="text/ng-template"></script> -->
