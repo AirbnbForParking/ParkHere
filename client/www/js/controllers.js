@@ -164,8 +164,77 @@ angular.module('starter.controllers', ['starter.services'])
     google.maps.event.addDomListener(document.getElementById("map"), 'load', $scope.initialise());
 
 
-});
+})
 
+.controller('ListingCtrl', function($scope){
+
+  $scope.data = {
+    address: '',
+    startDate: '',
+    endDate: '',
+    startTime: '',
+    endTime: ''
+  };
+
+  $scope.timePickerObject = {
+    inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
+    step: 1,  //Optional
+    format: 24,  //Optional
+    setLabel: 'Set',  //Optional
+    closeLabel: 'Close',  //Optional
+    setButtonType: 'button-positive',  //Optional
+    closeButtonType: 'button-stable',  //Optional
+    callback: function (val) {    //Mandatory
+      timePickerCallback(val);
+    } 
+  };
+
+  $scope.datepickerObject = {
+    titleLabel: 'Title',  //Optional
+    todayLabel: 'Today',  //Optional
+    closeLabel: 'Close',  //Optional
+    setLabel: 'Set',  //Optional
+    setButtonType : 'button-assertive',  //Optional
+    todayButtonType : 'button-assertive',  //Optional
+    closeButtonType : 'button-assertive',  //Optional
+    inputDate: new Date(),    //Optional
+    mondayFirst: true,    //Optional
+    weekDaysList: weekDaysList,   //Optional
+    templateType: 'modal', //Optional
+    showTodayButton: 'true', //Optional
+    modalHeaderColor: 'bar-positive', //Optional
+    modalFooterColor: 'bar-positive', //Optional
+    from: new Date(),   //Optional
+    callback: function (val) {    //Mandatory
+      datePickerCallback(val);
+    }
+  };
+
+  function timePickerCallback(val) {
+    if (typeof (val) === 'undefined') {
+      console.log('Time not selected');
+    } else {
+      var selectedTime = new Date(val * 1000);
+      console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
+    }
+  }
+
+  var weekDaysList = ["Sun", "Mon", "Tue", "Wed", "thu", "Fri", "Sat"];
+
+  var datePickerCallback = function (val) {
+    if (typeof(val) === 'undefined') {
+      console.log('No date selected');
+    } else {
+      console.log('Selected date is : ', val)
+    }
+  };
+
+  $scope.addListing = function(){
+    console.log("Browser Console - Logging in with ", $scope.data);
+    $scope.data = {};
+  };
+
+});
 
 
 
