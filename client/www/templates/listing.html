@@ -1,43 +1,43 @@
-<ion-view view-title="Listing">
-  <ion-content >
-    <div>
-    <h1>Listing</h1>
-      <!-- Table for current listings that user has include address, start date, end date, times available, and if currently occupied-->
-      <!-- Need Form Field for listing details include address, start date, end date, times available and submit button-->
-      <div class="list" ng-controller="ListingCtrl">
-        <label class="item item-input item-floating-label">
+<ion-modal-view>
+  <ion-content>
+    <h1 class="title">Add Listing</h1>
+    <form ng-submit="addListing()" ng-controller="ListingCtrl">
+      <div class="listing">
+
+       <label class="item item-input item-floating-label">
           <span class="input-label">Address</span>
-          <input type="text" placeholder="Address">
+          <input type="text" placeholder="Address" ng-model="data.address">
         </label>
-        <label class="item item-input item-floating-label">
+
+        <label class="item item-input">
           <span class="input-label">Start Date</span>
           <input type="date">
         </label>
-        <label class="item item-input item-floating-label">
+
+        <label class="item item-input">
           <span class="input-label">End Date</span>
           <input type="date">
         </label>
-        <label class="item item-input item-floating-label">
-          <span class="input-label">Start Time</span>
-          <input type="text" placeholder="Start Time">
-        </label>
-<!--         <ionic-timepicker input-obj="timePickerObject">
+
+        <h4>Start Time</h4>
+        <ionic-timepicker input-obj="timePickerObject">
           <button class="button button-block button-positive overflowShow">
-            <standard-time-meridian etime='timePickerObject.inputEpochTime'></standard-time-meridian>
+            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.startTime"></standard-time-meridian>
           </button>
         </ionic-timepicker>
- -->        <label class="item item-input item-floating-label">
-          <span class="input-label">End Time</span>
-          <input type="text" placeholder="End Time">
-        </label>
-      </div>
-    </div>
-  </ion-content>     
-</ion-view>
-<!-- 
-        <label class="item item-input item-floating-label">
-          <span class="input-label">First Name</span> 
-          <input type="text" placeholder="First Name">
-        </label>
 
- -->
+        <h4>End Time</h4>
+        <ionic-timepicker input-obj="timePickerObject">
+          <button class="button button-block button-positive overflowShow">
+            <standard-time-meridian etime='timePickerObject.inputEpochTime' ng-model="data.endTime"></standard-time-meridian>
+          </button>
+        </ionic-timepicker>
+
+      <button class="button button-block button-positive" type="submit">
+        Add Listing
+      </button>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-modal-view>
