@@ -1,8 +1,8 @@
 var app = require('./../server-config.js');
 var Sequelize = require('sequelize');
-//var sequelize = require('./database');
-var sequelize = new Sequelize('d480hpcc0j9jp0', 'vbanomqzrljvvv', 'Gs8_u4RIDhHNTmhk4zOBdsNrAc', {
-    host:     'ec2-54-227-254-13.compute-1.amazonaws.com',
+var sequelize = require('./database');
+var sequelize = new Sequelize('dblrdt5bpjuuoo', 'ktpwgftmsyaivi', 'HdW64iUsOrICG4TNbYH_qU_Ml4', {
+    host:     'ec2-75-101-162-243.compute-1.amazonaws.com',
     port:     5432,
     dialect: "postgres",
     native: true

@@ -4,7 +4,7 @@ var database = require('./db/index.js');
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'));
 
-console.log('Server listening on port ', app.get('port'))
+console.log('Server listening on port ', app.get('port'));
 
 // var express = require('express'),
 //      models = require('./server/models'),

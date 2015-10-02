@@ -15,11 +15,11 @@
 
 // /* read all files in directory that are not this file */
 
-// f
+// 
 //   .readdirSync(__dirname)
 //   .filter(function(file) {
 //     return (file.indexOf(".") !== 0) && (file !== "index.js");
-//   }
+//   
 //   /* set as Sequelize models and add to db object */
 //   .forEach(function(file) {
 //     var model = sequelize.import(path.join(__dirname, file));
@@ -30,8 +30,8 @@
 //   /* create relationships between models, if any */
 //   if ("associate" in db[modelName]) {
 //     db[modelName].associate(db);
-  
-// })
+ 
+// }
 
 // db.sequelize   = sequelize;
 // db.Sequelize   = Sequelize;
