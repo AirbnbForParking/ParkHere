@@ -281,3 +281,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2d6dc5d708f65c4129cea789c19b4fd71063254b
