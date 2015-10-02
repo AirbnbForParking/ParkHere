@@ -85,48 +85,44 @@ angular.module('starter.controllers', ['starter.services'])
       };
       map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-      //add event listener for when map is done changing/zooming      
+      // Adds an event listener for when map is done changing/zooming      
       google.maps.event.addListener(map, 'idle', $scope.showMarkers);
 
+      // Drops a custom marker for searched address
       $scope.addMarkerGeo(location, map);
-      // $scope.markers = $scope.searches.forEach(function(obj) {
-      //   $scope.addMarker(obj,map);
-      // });
     });
   };
 
-  // Show Markers
+  // Show Markers gets called whenever map is done changing/zooming
   $scope.showMarkers = function(){
-    console.log('I am idle!');
-    var bounds = map.getBounds();
-    console.log(markers);
-    console.log('this is bounds: ', bounds);
-    console.log('this is bounds.Ga: ', bounds.Ga); //Ka = lat, Ga = long
-    console.log('this is bounds.Ga.j: ', bounds.Ga.j); // js is the left boundary
-    console.log('this is bounds.Ga.H: ', bounds.Ga.H); // H is the right boundary
-    //bounds.Ka.j // lat, j is the top boundary
-    //bounds.Ka.H // lat, H is the bottom boundary
+    // Get longitudinal and latitudinal boundaries
+    var bounds = map.getBounds(); 
+      // bounds object looks like this {Ka: {j: #, H: #}, Ga: {j: #, H: #}}
+      // Ka = lat, Ka.j = top boundary, Ka.H = bottom boundary
+      // Ga = long, Ga.j = left boundary, Ga.H = right boundary
     
-
-
-
     // Call the server with ajax passing it the bounds  
+
+    //============ Happening server-side ================
+    //*** replace searches with the data from database***
+
+      // filter markers
+      var filtered = $scope.searches.filter(function(parkingSpot){
+        // Boolean for whether parkingSpot is in the boundary
+        var withinBoundary = parkingSpot.lat < bounds.Ka.j && parkingSpot.lat > bounds.Ka.H 
+            && parkingSpot.lng < bounds.Ga.H && parkingSpot.lng > bounds.Ga.j;
+        return withinBoundary;
+      });
+    //===================================================
 
     // In the ajax callback delete the current markers and add new markers
       // delete current markers
         $scope.clearMarkers();
-      // this happens on the server
-        // filter markers
-        var filtered = $scope.searches.filter(function(parkingSpot){
-          if (parkingSpot){}
-            // figure lower lat and higher lat bound
-            // figure lower long and higher long bound
-        });
 
 
       // read current markers
-      // dummy data, replace searches with the filtered array later
-        $scope.searches.forEach(function(obj) {
+      // *** dummy data, replace filtered with the filtered array from the server later ***
+        filtered.forEach(function(obj) {
           markers.push($scope.addMarker(obj,map));
         });
 
@@ -134,6 +130,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   //Clear current markers
   $scope.clearMarkers = function(){
+    console.log(markers);
     for (var i = 0; i < markers.length; i++){
       markers[i].setMap(null);
     }
@@ -229,14 +226,46 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('ListingCtrl', function($scope){
+.controller('ListingCtrl', function($scope, $ionicModal){
 
-  $scope.data = {
-    address: '',
-    startDate: '',
-    endDate: '',
-    startTime: '',
-    endTime: ''
+  $scope.listings = [];
+
+  $ionicModal.fromTemplateUrl('listing.html', {
+    scope: $scope,
+    animation: 'slide-in-up',
+    focusFirstInput: true
+  }).then(function (modal) {
+    $scope.modal = modal;
+    $scope.openModal();
+  });
+
+  $scope.openModal = function () {
+    $scope.modal.show();
+  };
+
+  $scope.closeModal = function () {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function () {
+    $scope.modal.remove();
+  });
+
+  $scope.addListing = function (data) {
+    console.log('data is: ',data);
+    $scope.listings.push({
+      address: data.address,
+      startDate: data.startDate,
+      endDate: data.endDate,
+      startTime: data.startTime,
+      endTime: data.endTime
+    });
+    data.address = '';
+    data.startDate = null;
+    data.endDate = null;
+    data.startTime = null;
+    data.endTime = null;
+    $scope.closeModal();
   };
 
   $scope.timePickerObject = {
@@ -260,11 +289,6 @@ angular.module('starter.controllers', ['starter.services'])
       console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
     }
   }
-
-  $scope.addListing = function(){
-    console.log("Browser Console - Logging in with ", $scope.data);
-    $scope.data = {};
-  };
 
 });
 
