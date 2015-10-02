@@ -230,13 +230,12 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.listings = [];
 
-  $ionicModal.fromTemplateUrl('listing.html', {
+  $ionicModal.fromTemplateUrl('templates/modal.html', {
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true
   }).then(function (modal) {
     $scope.modal = modal;
-    $scope.openModal();
   });
 
   $scope.openModal = function () {
@@ -255,40 +254,22 @@ angular.module('starter.controllers', ['starter.services'])
     console.log('data is: ',data);
     $scope.listings.push({
       address: data.address,
-      startDate: data.startDate,
-      endDate: data.endDate,
+      startDate: new Date(data.startDate),
+      endDate: new Date(data.endDate),
       startTime: data.startTime,
-      endTime: data.endTime
+      endTime: data.endTime,
+      startHours: new Date(data.startTime).getUTCHours(),
+      startMinutes: new Date(data.startTime).getUTCMinutes(),
+      endHours: new Date(data.endTime).getUTCHours(),
+      endMinutes: new Date(data.endTime).getUTCMinutes()
     });
-    data.address = '';
+    data.address = null;
     data.startDate = null;
     data.endDate = null;
     data.startTime = null;
     data.endTime = null;
     $scope.closeModal();
   };
-
-  $scope.timePickerObject = {
-    inputEpochTime: ((new Date()).getHours() * 60 * 60),  //Optional
-    step: 1,  //Optional
-    format: 24,  //Optional
-    setLabel: 'Set',  //Optional
-    closeLabel: 'Close',  //Optional
-    setButtonType: 'button-positive',  //Optional
-    closeButtonType: 'button-stable',  //Optional
-    callback: function (val) {    //Mandatory
-      timePickerCallback(val);
-    } 
-  };
-
-  function timePickerCallback(val) {
-    if (typeof (val) === 'undefined') {
-      console.log('Time not selected');
-    } else {
-      var selectedTime = new Date(val * 1000);
-      console.log('Selected epoch is : ', val, 'and the time is ', selectedTime.getUTCHours(), ':', selectedTime.getUTCMinutes(), 'in UTC');
-    }
-  }
 
 });
 
