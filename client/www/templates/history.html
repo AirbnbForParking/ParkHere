@@ -1,5 +1,24 @@
 <ion-view view-title="History">
   <ion-content>
-    <h1>History</h1>
+      <div class="row header">
+        <div class="col">Address</div>
+        <div class="col">Start Date</div>
+        <div class="col">End Date</div>
+        <div class="col">Start Time</div>
+        <div class="col">End Time</div>
+        <div class="col">Price/hour</div>
+        <div class="col">Status</div>
+        <div class="col">Transaction Party</div>
+      </div>
+      <div class="row" ng-repeat="history in histories">
+        <div class="col">{{history.address}}</div>
+        <div class="col">{{history.startDate | date:'yyyy-MM-dd'}}</div>
+        <div class="col">{{history.endDate | date:'yyyy-MM-dd'}}</div>
+        <div class="col">{{history.startTime | date:'h:mma'}}</div>
+        <div class="col">{{history.endTime | date:'h:mma'}}</div>
+        <div class="col">${{history.price}}</div>
+        <div class="col">{{history.status}}</div>
+        <div class="col">{{history.party}}</div>
+      </div>
   </ion-content>
 </ion-view>

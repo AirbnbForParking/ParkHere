@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   //Clear current markers
   $scope.clearMarkers = function(){
-    console.log(markers);
+    // console.log(markers);
     for (var i = 0; i < markers.length; i++){
       markers[i].setMap(null);
     }
@@ -189,16 +189,16 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 .controller('MapController', function($scope, $ionicLoading) {
-    console.log("MapController");
+    // console.log("MapController");
     $scope.initialise = function() {
-        console.log("In Google.maps.event.addDomListener");
+        // console.log("In Google.maps.event.addDomListener");
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
         var mapOptions = {
             center: myLatlng,
             zoom: 19,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        console.log(mapOptions);
+        // console.log(mapOptions);
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker;
 
@@ -272,6 +272,12 @@ angular.module('starter.controllers', ['starter.services'])
     data.price = 0;
     $scope.closeModal();
   };
+
+})
+
+.controller('HistoryCtrl', function($scope){
+
+  $scope.histories = [];
 
 });
 
