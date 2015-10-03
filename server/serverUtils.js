@@ -13,20 +13,20 @@ module.exports = {
   getAll: function(req, res, model, conditions){
     model.findAll({
       where: conditions
-    }
+    })
     .then(function(resultOfFind){
-      res.json(resultOfFind)
+      res.json(resultOfFind);
     });
-  }
+  },
 
   getOne: function(req, res, model, conditions){
     model.findOne({
       where: conditions
-    }
+    })
     .then(function(resultOfFind){
       res.json(resultOfFind)
     });
-  }
+  },
 
   createInstance: function(req, res, model, attributes, callback){
     model.upsert(attributes)
@@ -35,11 +35,11 @@ module.exports = {
         callback();
       }
       res.json(anotherModel);
-    }
+    })
     .catch(function(err){
       res.end(err);
     });
-  }
+  },
 
   updateInstance: function(req, res, model, updateValues, conditions, callback){
     model.update(updateValues, {where:conditions})
@@ -48,9 +48,10 @@ module.exports = {
         callback();
       }
       res.end();
-    }
+    })
     .error(function(err){
       res.end(err);
-    });
+    })
+  }
   
 };
