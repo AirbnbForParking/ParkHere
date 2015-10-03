@@ -15,7 +15,7 @@ module.exports = {
       where: conditions
     })
     .then(function(resultOfFind){
-      res.json(resultOfFind);
+      res.json(resultOfFind)
     });
   },
 
@@ -51,7 +51,7 @@ module.exports = {
     })
     .error(function(err){
       res.end(err);
-    })
-  }
+    });
   
-};
+  }
+}

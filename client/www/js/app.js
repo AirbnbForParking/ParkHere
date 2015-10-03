@@ -96,6 +96,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'SearchResultCtrl'
       }
     }
+  })
+
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
+      }
+    }
   });
 
   //Fallback Route
