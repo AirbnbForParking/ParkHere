@@ -1,7 +1,25 @@
 <ion-view view-title="Profile">
   <ion-content>
-    <div>
-    Joe Shmoe
-    </div>
+      <div class="row header">
+        <div class="col">First Name</div>
+        <div class="col">Last Name</div>
+        <div class="col">Email Address</div>
+        <div class="col">Physical Address</div>
+        <div class="col">Phone Number</div>
+        <div class="col">Username</div>
+      </div>
+      <div>
+        <div class="col">{{profile.firstName}}</div>
+        <div class="col">{{profile.lastName}}</div>
+        <div class="col">{{profile.emailAddress}}</div>
+        <div class="col">{{profile.physicalAddress}}</div>
+        <div class="col">{{profile.phoneNumber}}</div>
+        <div class="col">{{profile.username}}</div>
+      </div>
+      <div>
+        <input type="text" placeholder="Address" ng-model="data.address">
+      </div>
+        
   </ion-content>
 </ion-view>
+
