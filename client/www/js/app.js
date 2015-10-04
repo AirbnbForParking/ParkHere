@@ -48,11 +48,15 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  // .state('register', {
-  //   url: '/register',
-  //   templateUrl: 'templates/register.html',
-  //   controller: 'RegisterCtrl'
-  // })
+  .state('app.register', {
+    url: '/register',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
+      }
+    }
+  })
 
   .state('app.history', {
     url: '/history',

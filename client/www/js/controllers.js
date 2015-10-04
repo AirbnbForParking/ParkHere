@@ -37,31 +37,15 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('RegisterCtrl', function($scope, $timeout){
-  // Controllers in Ionic are only called when they are recreated or on 
-  // app start, instead of every page change
+.controller('RegisterCtrl', function($scope, $timeout, $state){
 
-  // Form data for login modal
   $scope.registerData = {}
 
-  // Triggered in login modal to close
-  $scope.closeRegister = function(){
-    $scope.modal.hide();
-  };
-
-  //Open the login modal
-  $scope.showRegister = function(){
-    $scope.modal.show();
-  };
-
-  
-
-  // Perform login action when the user submits the login form
   $scope.doRegister = function(){
     console.log("Browser Console - Registering in with ", $scope.registerData);
     // Simulate a login delay.  Remove and replace later with login code and login system
     $timeout(function(){
-      $scope.closeLogin();
+      $state.go("search");
     }, 1000);
   };
 })
