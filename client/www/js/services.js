@@ -9,14 +9,25 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('Search', function($resource){
   return $resource('http://localhost:5000/search/:searchId');
-})
+}
 
 .factory('History', function($resource){
   return $resource('http://localhost:5000/history/:historyId');
-})
+}
 
-.factory('Login', function($resource){
-  return $resource('http://localhost:5000/login/:loginId');
+.factory('Login', function($http){
+  var signIn = function(loginData) {
+    return $http({
+      method: 'POST',
+      url: '/api/login',
+      data: loginData
+    })
+    .then(function(response){
+      return response.data.token;
+      console.log(response);
+    });
+  };
+  signIn(loginData);
 })
 
 .factory('Listing', function($resource){

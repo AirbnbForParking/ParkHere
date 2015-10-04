@@ -1,9 +1,9 @@
 var app = require('./../server-config.js');
 var Sequelize = require('sequelize');
 var sequelize = require('./database');
-// var bcrypt   = require('bcrypt-nodejs'),
-//     Q        = require('q'),
-//     SALT_WORK_FACTOR  = 10;
+var bcrypt   = require('bcrypt-nodejs'),
+    Q        = require('q'),
+    SALT_WORK_FACTOR  = 10;
 
 /*
 Database connection configuration for heroku. Refer to Local configuration for parameters.
@@ -41,6 +41,9 @@ module.exports = function() {
 /*
 Schema.
 */
+
+//################### USER SCHEMA #################################
+
 var User = sequelize.define('users', {
   id: {
     type: Sequelize.INTEGER,
@@ -56,19 +59,20 @@ var User = sequelize.define('users', {
   password: Sequelize.STRING  
 });
 
-// User.methods.comparePasswords =  function(candidatePassword) {
-//   var defer = Q.defer();
-//   var savedPassword = this.password;
-//   bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-//     if (err) {
-//       defer.reject(err);
-//     } else {
-//       defer.resolve(isMatch);
-//     }
-//   });
-//   return defer.promise;
-// };
+User.methods.comparePasswords =  function(candidatePassword) {
+  var defer = Q.defer();
+  var savedPassword = this.password;
+  bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
+    if (err) {
+      defer.reject(err);
+    } else {
+      defer.resolve(isMatch);
+    }
+  });
+  return defer.promise;
+};
 
+//########################## Transaction ################################
 
 var Transaction = sequelize.define('transactions', {
   id: {
@@ -91,6 +95,7 @@ var Transaction = sequelize.define('transactions', {
   length: Sequelize.STRING
  });
 
+//########################################## Renter #######################################
 
 var Renter = sequelize.define('renters', {
   id: {
@@ -106,6 +111,8 @@ var Renter = sequelize.define('renters', {
   username: Sequelize.STRING,
   password: Sequelize.STRING
 });
+
+//################################## Listing #########################################
 
 var Listing = sequelize.define('listings', {
   id: {
@@ -126,6 +133,8 @@ var Listing = sequelize.define('listings', {
   }
 });
 
+//################################# Message ###########################################
+
 var Message = sequelize.define('messages', {
   message: Sequelize.STRING,
   id: {
@@ -141,6 +150,8 @@ var Message = sequelize.define('messages', {
     }
   }
 });
+
+
 /*
 Set relationships between tables.
 */
