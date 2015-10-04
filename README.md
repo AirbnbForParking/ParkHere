@@ -2,7 +2,7 @@
 
 > Pithy project description
 
-## Team
+# Team
 
   - __Product Owner__: Artem Bakalov
   - __Scrum Master__: Boshika Tara
