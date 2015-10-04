@@ -9,12 +9,14 @@
     "pg": "^3.6.3",
     "pg-hstore": "*",
     "request": "^2.40.0",
-    "sequelize": "^3.8.0"
-  },
+    "sequelize": "^3.8.0",
+    "morgan": "^1.1.1"
+  },  
   "scripts": {
     "start": "node server/server.js"
   },
   "engines": {
     "node": "0.10.x"
-  }
-}
+   }
+ }
+
