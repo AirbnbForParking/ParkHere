@@ -18,10 +18,12 @@
 1. [Team](#team)
 1. [Contributing](#contributing)
 
-## Usage
+# Usage
 
 > Some usage instructions
 
-## Requirements
+# Requirements
 
 - Node 0.10.x
+- 
+# Development
