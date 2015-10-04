@@ -1,8 +1,16 @@
 var Sequelize = require('sequelize');
+<<<<<<< HEAD
 //console.log('\n\n\n' + new Sequelize(process.env.DATABASE_URL) + '\n\n\n\n');
 var sequelize = new Sequelize(process.env.DATABASE_URL);
 var pg = require('pg');
+=======
+// console.log('\n\n\n' + new Sequelize(process.env.DATABASE_URL) + '\n\n\n\n');
+>>>>>>> b6570dd9d19612c14069caa1ae6bde5c794f9f67
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/airbnbparking';
+var sequelize = new Sequelize(connectionString);
+// var sequelize = new Sequelize(process.env.DATABASE_URL);
+var pg = require('pg');
+
 
 var client = new pg.Client(connectionString);
 client.connect();
