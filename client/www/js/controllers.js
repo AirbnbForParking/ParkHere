@@ -37,7 +37,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('RegisterCtrl', function($scope, $timeout, $state){
+.controller('RegisterCtrl', function($scope, $timeout, $location){
 
   $scope.registerData = {}
 
@@ -45,7 +45,7 @@ angular.module('starter.controllers', ['starter.services'])
     console.log("Browser Console - Registering in with ", $scope.registerData);
     // Simulate a login delay.  Remove and replace later with login code and login system
     $timeout(function(){
-      $state.go("search");
+      $location.path('#/app/search');
     }, 1000);
   };
 })
