@@ -32,46 +32,45 @@ angular.module('starter.services', ['ngResource'])
 })
 
 .factory('Register', function($http){
-  var registerIn = function(registerData) {
-    return $http({
-      method: 'POST',
-      url: '/api/register',
-      data: registerData
-    })
-    .then(function(response){
-      return response.data.token;
-      console.log(response);
-    });
+  return {
+    registerIn: function(registerData) {
+      return $http({
+        method: 'POST',
+        url: '/api/register',
+        data: registerData
+      })
+      .then(function(response){
+        return response.data.token;
+        console.log(response);
+      });
+    };
   };
-  registerIn(registerData);
 })
 
 .factory('Listing', function($http){
-  var getListings = function() {
-    return $http({
-      method: 'GET',
-      url: '/api/listing'
-    })
-    .then(function(response){
-      return response.data;
-      console.log(response.data);
-    });
+  return {
+    getListings: function() {
+      return $http({
+        method: 'GET',
+        url: '/api/listing'
+      })
+      .then(function(response){
+        return response.data;
+        console.log(response.data);
+      });
+    },
+    addListing: function(listing) {
+      return $http({
+        method: 'POST',
+        url: '/api/listing',
+        data: listing
+      })
+      .then(function(response){
+        return response.data.token;
+        console.log(response);
+      });
+    }
   };
-
-  var addListing = function(listing) {
-    return $http({
-      method: 'POST',
-      url: '/api/listing',
-      data: listing
-    })
-    .then(function(response){
-      return response.data.token;
-      console.log(response);
-    });
-  };
-
-  getListings();
-
 })
 
 .factory('Profile', function($resource){
