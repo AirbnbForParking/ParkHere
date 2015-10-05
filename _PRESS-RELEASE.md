@@ -17,28 +17,27 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  Airbnb For Parking
+  ParkHere
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  For urban markets like San Francisco, LA, and New York, where parking spaces might be limited, people can posts their own open parking spots out for rnting to interested renters looking for parking spots.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  A mobile app, that lets a user login, and search for open parking spots using our interactive google map in their area of interest. Once a user finds a spot, they can directly connect to the renter, and either ask for more information, through out in built messaging, or book the spot instantly.
+  Renters who have parking spaces available, can easily post online, and manage thei spots with an interactive dashboard.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  Urban areas have huge issues with limited public parking spaces, which makes it hard and expensive to find parking.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  Our app lets users rent out their empty parking spots to people looking for parking spots
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  ParkHere, is a user friendly mobile application, that makes it easy to look for a spot or a rent a spot.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  
+ login into www.agile-sands-6368.herokuapp.com
+ sign up for an account,  then either post parking spots, or look for one...that easy.
+  
 
-## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
-
-## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
