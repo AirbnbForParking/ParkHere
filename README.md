@@ -41,6 +41,7 @@ ionic platform ios android
 ```
 Ionic Link: http://ionicframework.com/docs/cli/install.html
 Note: Testing the Ionic Frontend happens in one terminal winow, while backend in another.
+
 For testing Ionic Frontend
 ```sh
 cd client && ionic serve
