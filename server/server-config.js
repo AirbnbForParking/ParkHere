@@ -12,6 +12,9 @@ var sequelize = require('./db/database.js');
 
 var http = require('http');
 
+// configure our server with all the middleware and and routing
+//require('./config/middleware.js')(app, express);
+
 // app.use('/', express.static("./client"));
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());

@@ -74,17 +74,6 @@ angular.module('starter.controllers', ['starter.services'])
   ];
 
 
-
-  // User lists address for rent
-    // Geocode this at this time
-
-  // Searches contains address and possibly lat and longitude, if contains lat and long then plot it,
-  // but if doesn't then geocoding lookup of address, save the lat and long to the server by doing UPDATE request
-  // for the specific id. 
-
-  // If search address is not current location
-    // Geocode the address searched for (not a listing address) and add marker at that address. 
-
   var map;
   var markers = [];
   var globalInfowindow = null;
