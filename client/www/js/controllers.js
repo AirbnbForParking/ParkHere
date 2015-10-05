@@ -4,7 +4,6 @@ angular.module('starter.controllers', ['starter.services'])
   // Controllers in Ionic are only called when they are recreated or on 
   // app start, instead of every page change
 
-  // Form data for login modal
   $scope.loginData = {}
 
   // Create login modal
@@ -34,18 +33,15 @@ angular.module('starter.controllers', ['starter.services'])
     }, 1000);
   };
 
-  
-
-
-
 })
 
-.controller('RegisterCtrl', function($scope, $timeout, $location){
+.controller('RegisterCtrl', function(Register, $scope, $timeout, $location){
 
   $scope.registerData = {}
 
   $scope.doRegister = function(){
     console.log("Browser Console - Registering in with ", $scope.registerData);
+    Register.registerIn($scope.registerData);
     // Simulate a login delay.  Remove and replace later with login code and login system
     $timeout(function(){
       $location.path('#/app/search');
@@ -62,7 +58,6 @@ angular.module('starter.controllers', ['starter.services'])
     {id: 3, address: '652 Polk St San Francisco, CA', seller: 'Katherine', price: 20, lat: 37.78291, lng: -122.41902},
     {id: 4, address: 'Dick\'s Sporting Goods Concord, NH 03301 United States', seller: 'Christina', price: 25, lat: 43.22697, lng: -71.48562},
     {id: 5, address: 'Highland Middle School, 15027 Bel-Red Rd Bellevue, WA 98007, United States', seller: 'Bob', price: 30, lat: 47.62657, lng: -122.14020},
-      // dummy cluster
     {id: 6, address: '582 Sutter St San Francisco, CA 94102', seller: 'Bob', price: 30, lat: 37.78918, lng: -122.40993},
     {id: 7, address: '678 Post St San Francisco, CA 94109', seller: 'Bob', price: 30, lat: 37.78776, lng: -122.41295},
     {id: 8, address: '850 Bush St San Francisco, CA 94108', seller: 'Bob', price: 30, lat: 37.79003, lng: -122.41134},
@@ -126,7 +121,7 @@ angular.module('starter.controllers', ['starter.services'])
       });
     //===================================================
 
-    // In the ajax callback delete the current markers and add new markers
+    // In the callback delete the current markers and add new markers
       // delete current markers
         $scope.clearMarkers();
 
@@ -136,11 +131,6 @@ angular.module('starter.controllers', ['starter.services'])
         filtered.forEach(function(obj) {
           markers.push($scope.addMarker(obj,map));
         });
-
-    // *** Ignore for now
-    //API call when ready
-   // $scope.searches = Search.query();
-
 
   };
 
@@ -159,7 +149,6 @@ angular.module('starter.controllers', ['starter.services'])
       map: map,
       position: location,
       icon: './../img/green-dot.png',
-      //map type
       mapTypeId: google.maps.MapTypeId.ROADMAP
     });
     return marker;
@@ -170,7 +159,6 @@ angular.module('starter.controllers', ['starter.services'])
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': addressString}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
-        // console.log('inside');
         callback(results[0].geometry.location);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -189,6 +177,7 @@ angular.module('starter.controllers', ['starter.services'])
     return marker;
   }
 
+  // Adds popup info to marker when clicked on  
   $scope.addInfoWindow = function(obj, marker) {
   var contentString = "<div>"+"Address: "+obj.address+"</div>"+
                       "<div>"+"Seller: "+obj.seller+"</div>"+
@@ -205,30 +194,23 @@ angular.module('starter.controllers', ['starter.services'])
     });
   }
 
-  $scope.addressArray = function(queryArray) {
-    return _.map(queryArray, function(element){
-      if (element.address !== undefined)
-        return element.address;
-    });
-  }
+  // $scope.addressArray = function(queryArray) {
+  //   return _.map(queryArray, function(element){
+  //     if (element.address !== undefined)
+  //       return element.address;
+  //   });
+  // }
 })
 
-// Retrieves a specific search using the Search service and store it in scope
-// .controller('SearchResultCtrl', function($scope, $stateParams, Search){
-//   $scope.search = Search.get({id: $stateParams.searchId});
-// })
-
+// Intialize map
 .controller('MapController', function($scope, $ionicLoading) {
-    // console.log("MapController");
     $scope.initialise = function() {
-        // console.log("In Google.maps.event.addDomListener");
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
         var mapOptions = {
             center: myLatlng,
             zoom: 19,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        // console.log(mapOptions);
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker;
 
@@ -260,7 +242,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   $scope.listings = [];
 
-  $ionicModal.fromTemplateUrl('templates/modal.html', {
+  $ionicModal.fromTemplateUrl('templates/addListingModal.html', {
     scope: $scope,
     animation: 'slide-in-up',
     focusFirstInput: true

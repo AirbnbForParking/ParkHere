@@ -40,6 +40,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 .config(function($stateProvider, $urlRouterProvider){
   $stateProvider
 
+  // The menu state of the app
   .state('app', {
     url: '/app',
     // sets up one state to be the default state of parent
@@ -84,26 +85,6 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       'menuContent': {
         templateUrl: 'templates/search.html',
         controller: 'SearchResultsCtrl'
-      }
-    }
-  })
-
-  .state('app.searchresults', {
-    url: '/searchresults',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/searchresults.html',
-        controller: 'SearchResultsCtrl'
-      }
-    }
-  })
-
-  .state('app.search', {
-    url: '/search/:searchId',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/search.html',
-        controller: 'SearchResultCtrl'
       }
     }
   })
