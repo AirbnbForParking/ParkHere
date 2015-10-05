@@ -11,11 +11,12 @@ angular.module('starter.services', ['ngResource'])
   return $resource('http://localhost:5000/search/:searchId');
 })
 
-.factory('History', function($resource){
-  return $resource('http://localhost:5000/history/:historyId');
+.factory('Historie', function($resource){
+  return $resource('/api/history/:historyId');
 })
 
 .factory('Login', function($http){
+  var userID = null;
   return {
     signIn: function(loginData) {
       return $http({
@@ -24,10 +25,12 @@ angular.module('starter.services', ['ngResource'])
         data: loginData
       })
       .then(function(response){
-        return response.data.token;
         console.log('response: ',response);
+        //set the userID here
+        return response.data.token;       
       });
-    }
+    },
+    userID: userID
   };
 })
 
@@ -36,6 +39,7 @@ angular.module('starter.services', ['ngResource'])
 // })
 
 .factory('Register', function($http){
+  var userID = null;
   return {
     registerIn: function(registerData) {
       return $http({
@@ -47,7 +51,8 @@ angular.module('starter.services', ['ngResource'])
         return response.data.token;
         console.log(response);
       });
-    }
+    },
+    userID: userID
   };
 })
 

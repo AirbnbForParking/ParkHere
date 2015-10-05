@@ -136,7 +136,6 @@ angular.module('starter.controllers', ['starter.services'])
 
   //Clear current markers
   $scope.clearMarkers = function(){
-    // console.log(markers);
     for (var i = 0; i < markers.length; i++){
       markers[i].setMap(null);
     }
@@ -287,9 +286,13 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('HistoryCtrl', function($scope){
+.controller('HistoryCtrl', function(Login, Historie, $scope, $location){
 
-  $scope.histories = [];
+  if (Login.userID === null) {
+    $location.path('#/app/profile');
+  }
+
+  $scope.histories = Historie.query();
 
 })
 
