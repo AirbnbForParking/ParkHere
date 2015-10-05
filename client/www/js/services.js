@@ -15,10 +15,66 @@ angular.module('starter.services', ['ngResource'])
   return $resource('http://localhost:5000/history/:historyId');
 })
 
-.factory('Login', function($resource){
-  return $resource('http://localhost:5000/login/:loginId');
+.factory('Login', function($http){
+  return {
+    signIn: function(loginData) {
+      return $http({
+        method: 'POST',
+        url: '/api/login',
+        data: loginData
+      })
+      .then(function(response){
+        return response.data.token;
+        console.log('response: ',response);
+      });
+    }
+  };
 })
 
-.factory('Listing', function($resource){
-  return $resource('http://localhost:5000/listing/:listingId');
+.factory('Register', function($http){
+  var registerIn = function(registerData) {
+    return $http({
+      method: 'POST',
+      url: '/api/register',
+      data: registerData
+    })
+    .then(function(response){
+      return response.data.token;
+      console.log(response);
+    });
+  };
+  registerIn(registerData);
 })
+
+.factory('Listing', function($http){
+  var getListings = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/listing'
+    })
+    .then(function(response){
+      return response.data;
+      console.log(response.data);
+    });
+  };
+
+  var addListing = function(listing) {
+    return $http({
+      method: 'POST',
+      url: '/api/listing',
+      data: listing
+    })
+    .then(function(response){
+      return response.data.token;
+      console.log(response);
+    });
+  };
+
+  getListings();
+
+})
+
+.factory('Profile', function($resource){
+  return $resource('http://localhost:5000/profile/:profileId');
+})
+
