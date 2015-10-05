@@ -43,7 +43,7 @@ angular.module('starter.services', ['ngResource'])
         return response.data.token;
         console.log(response);
       });
-    };
+    }
   };
 })
 
@@ -75,5 +75,5 @@ angular.module('starter.services', ['ngResource'])
 
 .factory('Profile', function($resource){
   return $resource('http://localhost:5000/profile/:profileId');
-})
+});
 
