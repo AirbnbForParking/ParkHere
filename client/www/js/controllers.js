@@ -306,5 +306,17 @@ angular.module('starter.controllers', ['starter.services'])
 
 .controller('ProfileCtrl', function($scope){
   $scope.profileInfo = {};
+
+  $scope.profileChangeInfo = {};
+
+  $scope.doProfileChange = function(){
+    $scope.profileChangeInfo = {};
+    console.log("Browser Console - Registering in with ", $scope.profileChangeInfo);
+    // Simulate a login delay.  Remove and replace later with login code and login system
+    $timeout(function(){
+      $location.path('#/app/search');
+    }, 1000);
+  };
+
 });
 

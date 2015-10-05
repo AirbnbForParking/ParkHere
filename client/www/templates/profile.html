@@ -1,7 +1,49 @@
 <ion-view view-title="Profile">
   <ion-content>
-    <div>
-    Joe Shmoe
-    </div>
+      <div class="row header">
+        <div class="col">First Name</div>
+        <div class="col">Last Name</div>
+        <div class="col">Email Address</div>
+        <div class="col">Physical Address</div>
+        <div class="col">Phone Number</div>
+        <div class="col">Username</div>
+      </div>
+      <div class="row" ng-repeat="profile in profileInfo">
+        <div class="col">{{profile.firstName}}</div>
+        <div class="col">{{profile.lastName}}</div>
+        <div class="col">{{profile.emailAddress}}</div>
+        <div class="col">{{profile.physicalAddress}}</div>
+        <div class="col">{{profile.phoneNumber}}</div>
+        <div class="col">{{profile.username}}</div>
+      </div>
+      <br><br>
+      <form ng-submit="doProfileChange()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Physical Address</span>
+          <input type="text" ng-model="profileChangeInfo.address">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Email Address</span>
+          <input type="email" ng-model="profileChangeInfo.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Phone Number</span>
+          <input type="tel" ng-model="profileChangeInfo.phoneNumber">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input type="text" ng-model="profileChangeInfo.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="profileChangeInfo.password">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" type="submit">Change Profile</button>
+        </label>        
+      </div>
+    </form>       
   </ion-content>
 </ion-view>
+
