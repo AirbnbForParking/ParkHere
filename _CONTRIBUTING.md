@@ -1,12 +1,13 @@
 # Contributing
-## NOTE: A sample workflow is specified below, this might be different depending on whether you are part of AirbnbForParking organization or not. People who are part of the organization can follow the workflow outlined below or directly clone the repo down using
+## NOTE: 
+A sample workflow is specified below, this might be different depending on whether you are part of AirbnbForParking organization or not. People who are part of the organization can follow the workflow outlined below or directly clone the repo down using
 git clone https://github.com/AirbnbForParking/AirbnbForParking.
-To create a new branch use git checkout -b <branchname> or you can create a new branch on Github directly using create a branch
+To create a new branch use git checkout -b branchname or you can create a new branch on Github directly using create a branch
 This will create a new branch, once ready to push the commits up to the github
 use git add .
 git commit
-git push origin <branchname>
-To do a pull request to the master, on the GitHub repo, from you branch name, click on Pull request, then New Pull Request, set the base as <master>, and compare as <your branch name> then click create pull request.
+git push origin branchname
+To do a pull request to the master, on the GitHub repo, from you branch name, click on Pull request, then New Pull Request, set the base as master, and compare as your branch name then click create pull request.
 
 ## General Workflow
 
