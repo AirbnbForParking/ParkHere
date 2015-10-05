@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# AirbnbForParking
-=======
 # Airbnb For Parking
 
 > Pithy project description
