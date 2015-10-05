@@ -1,4 +1,4 @@
-// Point of this module is to create a Session service
+  // Point of this module is to create a Session service
 // that uses the Angular resource module (ngResource)
 // to retrieve data using REST services
 
@@ -31,6 +31,10 @@ angular.module('starter.services', ['ngResource'])
   };
 })
 
+// .factory('Login', function($resource){
+//   return $resource('api/login');
+// })
+
 .factory('Register', function($http){
   return {
     registerIn: function(registerData) {
@@ -46,6 +50,10 @@ angular.module('starter.services', ['ngResource'])
     }
   };
 })
+
+// .factory('Register', function($resource){
+//   return $resource('api/register');
+// })
 
 .factory('Listing', function($http){
   return {

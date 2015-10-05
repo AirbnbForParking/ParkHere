@@ -34,6 +34,8 @@ angular.module('starter.controllers', ['starter.services'])
     }, 1000);
   };
 
+  
+
 
 
 })
@@ -110,6 +112,8 @@ angular.module('starter.controllers', ['starter.services'])
     
     // Call the server with ajax passing it the bounds  
 
+
+
     //============ Happening server-side ================
     //*** replace searches with the data from database***
 
@@ -132,6 +136,11 @@ angular.module('starter.controllers', ['starter.services'])
         filtered.forEach(function(obj) {
           markers.push($scope.addMarker(obj,map));
         });
+
+    // *** Ignore for now
+    //API call when ready
+   // $scope.searches = Search.query();
+
 
   };
 
@@ -202,9 +211,6 @@ angular.module('starter.controllers', ['starter.services'])
         return element.address;
     });
   }
-
-  //API call when ready
-  // $scope.searches = Search.query();
 })
 
 // Retrieves a specific search using the Search service and store it in scope
