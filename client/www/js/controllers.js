@@ -237,7 +237,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('ListingCtrl', function($scope, $ionicModal){
+.controller('ListingCtrl', function(Listing, $scope, $ionicModal){
 
   $scope.listings = [];
 
