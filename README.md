@@ -1,4 +1,4 @@
-# Airbnb For Parking
+# ParkHERE
 A parking app that matches Users looking for a short-term or long-term parking spot, with people renting their parking spots. Currently, only available for San Francisco.
 
 # Team
@@ -47,6 +47,8 @@ For working with PostgreSQL locally, get the postgres working on th local machin
 
   https://github.com/AirbnbForParking/AirbnbForParking/issues
 
+# Contributing
 
+  See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and git workflow.
 
 

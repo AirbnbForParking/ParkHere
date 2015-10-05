@@ -1,4 +1,4 @@
-# Airbnb For Parking
+# ParkHere
 A parking app that matches Users looking for a short-term or long-term parking spot, with people renting their parking spots. Currently, only available for San Francisco.
 
 ## Team
@@ -40,12 +40,17 @@ sudo npm install -g bower
 npm install
 bower install
 ```
+For working with PostgreSQL locally, get the postgres working on th local machine, to do that go to http://www.postgresql.org/download/, you will also need to install pg modules in NodeJs, you can do this by addding pg to the package.json, and running npm install pg --save.
 
 ### Roadmap
 
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 
+# Open Issues
+
+  https://github.com/AirbnbForParking/AirbnbForParking/issues
+
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and git workflow.
