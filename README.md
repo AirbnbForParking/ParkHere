@@ -1,6 +1,5 @@
 # Airbnb For Parking
-
-> Pithy project description
+A parking app that matches Users looking for a short-term or long-term parking spot, with people renting their parking spots. Currently, only available for San Francisco.
 
 # Team
 
@@ -17,14 +16,37 @@
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
+1. [Open issues](#Open Issues)
 
 # Usage
-
-> Some usage instructions
+  
 
 # Requirements
 
-- Node 0.10.x
-- 
+- node: "0.10.x"
+- postgres
+- ionic: "driftyco/ionic-bower#1.1.0"
+- Cordova Plugins
+
 # Development
->>>>>>> f0343ed0c6ac40201466ae500ea3f4e202ac274b
+
+  ### Installing Dependencies
+
+    All the dependencies are listed in the package.json file, in the client and server folder.
+    To install from within the root directory:
+
+    ```sh
+    sudo npm install -g bower
+    npm install
+    bower install
+    ```
+
+For working with PostgreSQL locally, get the postgres working on th local machine, to do that go to http://www.postgresql.org/download/, you will also need to install pg modules in NodeJs, you can do this by addding pg to the package.json, and running npm install pg --save.
+  
+  # Open Issues
+
+  https://github.com/AirbnbForParking/AirbnbForParking/issues
+
+
+
+
