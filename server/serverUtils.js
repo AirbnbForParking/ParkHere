@@ -9,7 +9,7 @@ var Message = models.Message;
 var Listing = models.Listing;
 var sequelize = require('./db/database.js');
 
-<<<<<<< HEAD
+
 /*
 Ignore below for now. 
 */
@@ -58,7 +58,7 @@ Ignore below for now.
 //     });
   
 // };
-=======
+
 module.exports = {
   getAll: function(req, res, model, conditions){
     model.findAll({
@@ -105,4 +105,4 @@ module.exports = {
   
   }
 }
->>>>>>> b6570dd9d19612c14069caa1ae6bde5c794f9f67
+
