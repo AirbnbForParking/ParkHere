@@ -32,6 +32,22 @@ angular.module('starter.controllers', ['starter.services'])
       $scope.closeLogin();
     }, 1000);
   };
+
+
+
+})
+
+.controller('RegisterCtrl', function($scope, $timeout, $location){
+
+  $scope.registerData = {}
+
+  $scope.doRegister = function(){
+    console.log("Browser Console - Registering in with ", $scope.registerData);
+    // Simulate a login delay.  Remove and replace later with login code and login system
+    $timeout(function(){
+      $location.path('#/app/search');
+    }, 1000);
+  };
 })
 
 //retrieves results of search
@@ -59,6 +75,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   var map;
   var markers = [];
+  var globalInfowindow = null;
 
   //Called when input is submitted
   $scope.getSearches = function(input){
@@ -66,7 +83,7 @@ angular.module('starter.controllers', ['starter.services'])
     var mapOptions;
     var myLatlng = $scope.AddressToLocation(input, function(location){
 
-      console.log(location); // {H: 37.422245, L: -122.0840084}
+      // console.log(location); // {H: 37.422245, L: -122.0840084}
       var mapOptions = {
         zoom: 19,
         // map gets centered here
@@ -119,7 +136,7 @@ angular.module('starter.controllers', ['starter.services'])
 
   //Clear current markers
   $scope.clearMarkers = function(){
-    console.log(markers);
+    // console.log(markers);
     for (var i = 0; i < markers.length; i++){
       markers[i].setMap(null);
     }
@@ -143,7 +160,7 @@ angular.module('starter.controllers', ['starter.services'])
     var geocoder = new google.maps.Geocoder();
     geocoder.geocode( { 'address': addressString}, function(results, status) {
       if (status === google.maps.GeocoderStatus.OK) {
-        console.log('inside');
+        // console.log('inside');
         callback(results[0].geometry.location);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
@@ -158,7 +175,24 @@ angular.module('starter.controllers', ['starter.services'])
         position: new google.maps.LatLng(obj.lat,obj.lng),
         mapTypeId: google.maps.MapTypeId.ROADMAP
     });
+    $scope.addInfoWindow(obj, marker);
     return marker;
+  }
+
+  $scope.addInfoWindow = function(obj, marker) {
+  var contentString = "<div>"+"Address: "+obj.address+"</div>"+
+                      "<div>"+"Seller: "+obj.seller+"</div>"+
+                      "<button>Book the space!!!</button>";
+  var infowindow = new google.maps.InfoWindow({
+      content: contentString
+    });
+  marker.addListener('click', function(){
+      if (globalInfowindow) {
+        globalInfowindow.close();
+      }
+      globalInfowindow = infowindow;
+      globalInfowindow.open(map,marker);
+    });
   }
 
   $scope.addressArray = function(queryArray) {
@@ -173,21 +207,21 @@ angular.module('starter.controllers', ['starter.services'])
 })
 
 // Retrieves a specific search using the Search service and store it in scope
-.controller('SearchResultCtrl', function($scope, $stateParams, Search){
-  $scope.search = Search.get({id: $stateParams.searchId});
-})
+// .controller('SearchResultCtrl', function($scope, $stateParams, Search){
+//   $scope.search = Search.get({id: $stateParams.searchId});
+// })
 
 .controller('MapController', function($scope, $ionicLoading) {
-    console.log("MapController");
+    // console.log("MapController");
     $scope.initialise = function() {
-        console.log("In Google.maps.event.addDomListener");
+        // console.log("In Google.maps.event.addDomListener");
         var myLatlng = new google.maps.LatLng(37.3000, -120.4833);
         var mapOptions = {
             center: myLatlng,
             zoom: 19,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        console.log(mapOptions);
+        // console.log(mapOptions);
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker;
 
@@ -262,12 +296,27 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.closeModal();
   };
 
+})
+
+.controller('HistoryCtrl', function($scope){
+
+  $scope.histories = [];
+
+})
+
+.controller('ProfileCtrl', function($scope){
+  $scope.profileInfo = {};
+
+  $scope.profileChangeInfo = {};
+
+  $scope.doProfileChange = function(){
+    $scope.profileChangeInfo = {};
+    console.log("Browser Console - Registering in with ", $scope.profileChangeInfo);
+    // Simulate a login delay.  Remove and replace later with login code and login system
+    $timeout(function(){
+      $location.path('#/app/search');
+    }, 1000);
+  };
+
 });
-
-
-
-
-
-
-
 

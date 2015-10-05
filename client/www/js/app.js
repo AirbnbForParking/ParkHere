@@ -48,11 +48,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
+  .state('app.register', {
+    url: '/register',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/register.html',
+        controller: 'RegisterCtrl'
+      }
+    }
+  })
+
   .state('app.history', {
     url: '/history',
     views: {
       'menuContent': {
-        templateUrl: 'templates/history.html'
+        templateUrl: 'templates/history.html',
+        controller: 'HistoryCtrl'
       }
     }
   })
@@ -93,6 +104,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       'menuContent': {
         templateUrl: 'templates/search.html',
         controller: 'SearchResultCtrl'
+      }
+    }
+  })
+
+  .state('app.profile', {
+    url: '/profile',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile.html',
+        controller: 'ProfileCtrl'
       }
     }
   });

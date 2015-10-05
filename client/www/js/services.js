@@ -28,8 +28,31 @@ angular.module('starter.services', ['ngResource'])
     });
   };
   signIn(loginData);
+<<<<<<< HEAD
+=======
+})
+
+.factory('Register', function($http){
+  var registerIn = function(registerData) {
+    return $http({
+      method: 'POST',
+      url: '/api/register',
+      data: registerData
+    })
+    .then(function(response){
+      return response.data.token;
+      console.log(response);
+    });
+  };
+  registerIn(registerData);
+>>>>>>> b6570dd9d19612c14069caa1ae6bde5c794f9f67
 })
 
 .factory('Listing', function($resource){
   return $resource('http://localhost:5000/listing/:listingId');
 })
+
+.factory('Profile', function($resource){
+  return $resource('http://localhost:5000/profile/:profileId');
+})
+
