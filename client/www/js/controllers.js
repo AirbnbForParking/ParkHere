@@ -1,6 +1,6 @@
 angular.module('starter.controllers', ['starter.services'])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout){
+.controller('AppCtrl', function(Login, $scope, $ionicModal, $timeout){
   // Controllers in Ionic are only called when they are recreated or on 
   // app start, instead of every page change
 
@@ -27,6 +27,7 @@ angular.module('starter.controllers', ['starter.services'])
   // Perform login action when the user submits the login form
   $scope.doLogin = function(){
     console.log("Browser Console - Logging in with ", $scope.loginData);
+    Login.signIn($scope.loginData);
     // Simulate a login delay.  Remove and replace later with login code and login system
     $timeout(function(){
       $scope.closeLogin();
@@ -304,14 +305,22 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('ProfileCtrl', function($scope){
-  $scope.profileInfo = {};
+.controller('ProfileCtrl', function($scope, $timeout, $location){
+  $scope.profileInfo = [{
+    firstName: "bob",
+    lastName: "Amory",
+    emailAddress: "bobAmory@gmail.com",
+    physicalAddress: "123 Fake Street, USA",
+    phoneNumber: "123-456-7890",
+    username: "bobAmory"
+  }];
 
   $scope.profileChangeInfo = {};
 
   $scope.doProfileChange = function(){
-    $scope.profileChangeInfo = {};
+    
     console.log("Browser Console - Registering in with ", $scope.profileChangeInfo);
+    $scope.profileChangeInfo = {};
     // Simulate a login delay.  Remove and replace later with login code and login system
     $timeout(function(){
       $location.path('#/app/search');
