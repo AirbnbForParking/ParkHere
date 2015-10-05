@@ -1,7 +1,7 @@
-# ParkHERE
-A parking app that matches Users looking for a short-term or long-term parking spot, with people renting their parking spots. Currently, only available for San Francisco.
+# ParkHere
+A parking app that matches Users looking for a short-term or long-term parking spot, with people renting their parking spots.
 
-# Team
+## Team
 
   - __Product Owner__: Artem Bakalov
   - __Scrum Master__: Boshika Tara
@@ -9,46 +9,60 @@ A parking app that matches Users looking for a short-term or long-term parking s
 
 ## Table of Contents
 
-1. [Usage](#Usage)
 1. [Requirements](#requirements)
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
 1. [Team](#team)
 1. [Contributing](#contributing)
-1. [Open issues](#Open Issues)
 
-# Usage
-  
 
-# Requirements
+## Requirements
 
 - node: "0.10.x"
-- postgres
+- postgres : "^3.6.3",
 - ionic: "driftyco/ionic-bower#1.1.0"
-- Cordova Plugins
+- Cordova Plugins- 
 
-# Development
+## Development
 
-  ### Installing Dependencies
+### Installing Dependencies
 
-    All the dependencies are listed in the package.json file, in the client and server folder.
-    To install from within the root directory:
+All the dependencies are listed in the package.json file, in the client and server folder.
+To install from within the root directory:
 
-    ```sh
-    sudo npm install -g bower
-    npm install
-    bower install
-    ```
-    Note on working with Postgres:
-    For working with PostgreSQL locally, get the postgres working on th local machine, to do that go to http://www.postgresql.org/download/, once downloaded, the postgres server need to be running to connect the database to the app. Also pg modules in Node need to be installled, you can do this by addding pg to the package.json, and running npm install pg --save.
-      
-  # Open Issues
+```sh
+sudo npm install -g bower
+sudo npm install -g cordova ionic
+ionic lib update && bower update
+npm install
+bower install
+ionic platform ios android
+```
+Ionic Link: http://ionicframework.com/docs/cli/install.html
+Note: Testing the Ionic Frontend happens in one terminal winow, while backend in another.
+For testing Ionic Frontend
+```sh
+cd client && ionic serve
+```
+For Testing Ionic Backend
+```sh
+cd server && ionic serve
+```
+
+How to install PostgreSQL locally: To get the postgres working on the local machine,go to http://www.postgresql.org/download/, you will also need to install pg modules in NodeJs, you can do this by addding pg to the package.json, and running npm install pg --save.. 
+Befor you can connect to the database to the application, you need to run the postgres server, you can start it from the commnand line, follow instructions listed here:http://www.postgresql.org/docs/9.1/static/server-start.html
+
+
+### Roadmap
+
+View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+
+# Open Issues
 
   https://github.com/AirbnbForParking/AirbnbForParking/issues
 
-# Contributing
 
-  See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and git workflow.
+## Contributing
 
-
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines and git workflow.
